@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Muhammad Abdullah — Data Scientist specializing in Python, SQL, Tableau, and Power BI. Based in Karachi, Pakistan." />
+  <title>Muhammad Abdullah — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #13161e;
+      --surface2:  #1a1e2a;
+      --border:    #252a38;
+      --accent:    #4f8ef7;
+      --accent2:   #7c5af7;
+      --green:     #3dd68c;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --dim:       #8892a4;
+      --tag-bg:    #1e2434;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,15,20,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-brand {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .85rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      color: var(--dim);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: .35rem .9rem;
+      border-radius: 6px;
+      font-size: .78rem !important;
+    }
+    .nav-cta:hover { background: #3b7ef5; color: #fff !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      color: var(--green);
+      letter-spacing: .1em;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:.4; transform:scale(.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: var(--dim);
+      margin-bottom: 1.6rem;
+    }
+    .hero-sub span { color: var(--accent); }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--dim);
+      max-width: 520px;
+      margin-bottom: 2.4rem;
+      line-height: 1.75;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      padding: .75rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: opacity .2s, transform .2s;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: .75rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: .95rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Stats bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 4rem;
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 1.4rem 1.2rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+    }
+    .stat-label {
+      font-size: .75rem;
+      color: var(--muted);
+      margin-top: .2rem;
+      display: block;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .08em;
+      margin-bottom: .5rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -.01em;
+      margin-bottom: .5rem;
+    }
+
+    .section-desc {
+      color: var(--dim);
+      max-width: 500px;
+      margin-bottom: 3rem;
+    }
+
+    .divider {
+      width: 40px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      margin: .8rem 0 1.5rem;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--surface); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .skill-icon { font-size: 1.8rem; margin-bottom: .7rem; }
+    .skill-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: .3rem;
+    }
+    .skill-detail {
+      font-size: .82rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: border-color .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      color: var(--accent);
+      letter-spacing: .08em;
+      margin-bottom: .3rem;
+    }
+
+    .project-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .project-link {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: .35rem .85rem;
+      border-radius: 6px;
+      transition: background .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .project-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .project-desc {
+      color: var(--dim);
+      font-size: .95rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .project-insights {
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .insight {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      color: var(--green);
+      display: flex;
+      align-items: flex-start;
+      gap: .5rem;
+    }
+    .insight::before { content: '▸'; color: var(--green); flex-shrink: 0; margin-top: 1px; }
+
+    .tags { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .72rem;
+      padding: .25rem .65rem;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--surface); }
+
+    .exp-grid { display: flex; flex-direction: column; gap: 1.4rem; }
+
+    .exp-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.6rem;
+      display: flex;
+      gap: 1.2rem;
+      transition: border-color .2s;
+    }
+    .exp-card:hover { border-color: var(--accent); }
+
+    .exp-icon { font-size: 1.8rem; flex-shrink: 0; }
+
+    .exp-role {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: .2rem;
+    }
+    .exp-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+      color: var(--muted);
+      margin-bottom: .7rem;
+    }
+    .exp-desc {
+      font-size: .9rem;
+      color: var(--dim);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.3rem 1.4rem;
+      text-decoration: none;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .contact-item:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .contact-icon { font-size: 1.4rem; }
+    .contact-label { font-size: .75rem; color: var(--muted); margin-bottom: .2rem; }
+    .contact-value { font-size: .9rem; font-weight: 600; }
+
+    .contact-bottom {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 2.5rem;
+    }
+    .contact-stat {
+      background: var(--surface);
+      padding: 1.4rem;
+      text-align: center;
+    }
+    .contact-stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+    }
+    .contact-stat-label {
+      font-size: .75rem;
+      color: var(--muted);
+      display: block;
+      margin-top: .2rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 5rem 1.2rem 3rem; }
+      .hero h1 { font-size: 2.4rem; }
+      .stats-bar { grid-template-columns: repeat(2,1fr); }
+      section { padding: 4rem 1.2rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-bottom { grid-template-columns: 1fr; }
+      .project-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">muhammad-abdullah.dev</span>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="mailto:abdullah.789hd@gmail.com" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <p class="hero-eyebrow">Available for work — Karachi, Pakistan</p>
+    <h1>Muhammad<br /><span>Abdullah</span></h1>
+    <p class="hero-sub">Data Scientist · <span>Python</span> · <span>SQL</span> · Tableau · Power BI</p>
+    <p class="hero-desc">
+      I transform raw data into clear, actionable insights.
+      Specializing in Python, SQL, and business intelligence tools —
+      I help companies understand their data and make smarter decisions.
+    </p>
+    <div class="hero-btns">
+      <a href="https://github.com/abduallah-dev" class="btn-primary">View Projects →</a>
+      <a href="mailto:abdullah.789hd@gmail.com" class="btn-secondary">✉ Get in Touch</a>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-num">3</span>
+        <span class="stat-label">Portfolio Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">13K+</span>
+        <span class="stat-label">Data Rows Analyzed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">6+</span>
+        <span class="stat-label">Tools & Technologies</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Open to Opportunities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <p class="section-eyebrow">// tools &amp; technologies</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="divider"></div>
+    <p class="section-desc">Technologies I use to analyze data and deliver insights.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-detail">Pandas, NumPy, Matplotlib, Seaborn</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">SQL</div>
+        <div class="skill-detail">MySQL, SQLite, Joins, Subqueries, Aggregations</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Tableau</div>
+        <div class="skill-detail">Interactive Dashboards, Charts, Filters</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">Power BI</div>
+        <div class="skill-detail">Reports, DAX, Data Modeling, KPI Dashboards</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📗</div>
+        <div class="skill-name">Excel</div>
+        <div class="skill-detail">Pivot Tables, VLOOKUP, Advanced Formulas</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🛒</div>
+        <div class="skill-name">eBay Research</div>
+        <div class="skill-detail">Product Analysis, Market Research, Pricing Data</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-eyebrow">// what I've built</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="divider"></div>
+    <p class="section-desc">End-to-end data analysis projects with real datasets.</p>
+
+    <div class="projects-grid">
+
+      <!-- PROJECT 01 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <p class="project-num">PROJECT — 01</p>
+            <h3 class="project-title">E-Commerce Sales Analysis</h3>
+          </div>
+          <a href="https://github.com/abduallah-dev/ecommerce-sales-analysis" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <p class="project-desc">
+          Analyzed 9,994 rows of retail sales data to uncover top-performing products,
+          regional revenue patterns, and seasonal trends using Python and Matplotlib.
+        </p>
+        <div class="project-insights">
+          <span class="insight">West region generates highest revenue across all categories</span>
+          <span class="insight">Technology category most profitable with 36% margin</span>
+          <span class="insight">December sales spike of 45% — key insight for inventory</span>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">EDA</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 02 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <p class="project-num">PROJECT — 02</p>
+            <h3 class="project-title">HR Employee Attrition Analysis</h3>
+          </div>
+          <a href="https://github.com/abduallah-dev/hr-attrition-sql" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <p class="project-desc">
+          Used SQL on 1,470 IBM employee records to identify attrition drivers
+          by department, age group, and overtime — with data visualizations.
+        </p>
+        <div class="project-insights">
+          <span class="insight">Sales department has highest attrition rate at 20.6%</span>
+          <span class="insight">30–40 age group: 94 employees left the company</span>
+          <span class="insight">Overtime employees are 3× more likely to resign</span>
+        </div>
+        <div class="tags">
+          <span class="tag">SQL</span>
+          <span class="tag">SQLite</span>
+          <span class="tag">Python</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+      </div>
+
+      <!-- PROJECT 03 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <p class="project-num">PROJECT — 03</p>
+            <h3 class="project-title">Amazon Sales Analysis</h3>
+          </div>
+          <a href="https://github.com/abduallah-dev/amazon-sql-analysis" class="project-link" target="_blank">View on GitHub →</a>
+        </div>
+        <p class="project-desc">
+          Performed in-depth sales analysis on Amazon product data using MySQL — 10 SQL queries
+          covering pricing strategies, discount patterns, customer ratings, and category-level insights.
+        </p>
+        <div class="project-insights">
+          <span class="insight">Identified top-rated product categories driving highest sales volume</span>
+          <span class="insight">Discount analysis revealed optimal pricing ranges for conversions</span>
+          <span class="insight">Rating distribution segmented across 5+ major product categories</span>
+        </div>
+        <div class="tags">
+          <span class="tag">MySQL</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Data Analysis</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-eyebrow">// work history</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="divider"></div>
+    <p class="section-desc">Real-world analytical work I have done.</p>
+
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-icon">🛒</div>
+        <div>
+          <p class="exp-role">eBay Product Researcher</p>
+          <p class="exp-meta">Freelance · Karachi, Pakistan</p>
+          <p class="exp-desc">
+            Conducted data-driven market research to identify profitable product opportunities on eBay.
+            Used Python and Excel to analyze pricing trends, competitor sales data, and demand patterns.
+            Delivered actionable product insights to clients based on real market analysis.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-icon">📊</div>
+        <div>
+          <p class="exp-role">Data Scientist — Portfolio Projects</p>
+          <p class="exp-meta">Self-directed · 2026</p>
+          <p class="exp-desc">
+            Built end-to-end data analysis projects using Python, SQL, and visualization tools.
+            Analyzed 13,000+ rows of real-world data across e-commerce, HR, and Amazon domains.
+            Published all work on GitHub with full documentation and visual outputs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-eyebrow">// get in touch</p>
+    <h2 class="section-title">Contact</h2>
+    <div class="divider"></div>
+    <p class="section-desc">
+      I am open to full-time Data Scientist roles, freelance projects, and remote opportunities.
+      Feel free to reach out!
+    </p>
+
+    <div class="contact-grid">
+      <a href="mailto:abdullah.789hd@gmail.com" class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <div>
+          <p class="contact-label">Email</p>
+          <p class="contact-value">abdullah.789hd@gmail.com</p>
+        </div>
+      </a>
+      <a href="tel:03707613358" class="contact-item">
+        <span class="contact-icon">📱</span>
+        <div>
+          <p class="contact-label">Phone</p>
+          <p class="contact-value">0370-7613358</p>
+        </div>
+      </a>
+      <a href="https://github.com/abduallah-dev" class="contact-item" target="_blank">
+        <span class="contact-icon">⬡</span>
+        <div>
+          <p class="contact-label">GitHub</p>
+          <p class="contact-value">github.com/abduallah-dev</p>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/muhammad-abdullah-100570407" class="contact-item" target="_blank">
+        <span class="contact-icon">💼</span>
+        <div>
+          <p class="contact-label">LinkedIn</p>
+          <p class="contact-value">Muhammad Abdullah</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="contact-bottom">
+      <div class="contact-stat">
+        <span class="contact-stat-num">3</span>
+        <span class="contact-stat-label">Completed Projects</span>
+      </div>
+      <div class="contact-stat">
+        <span class="contact-stat-num">6+</span>
+        <span class="contact-stat-label">Technologies Mastered</span>
+      </div>
+      <div class="contact-stat">
+        <span class="contact-stat-num">Open</span>
+        <span class="contact-stat-label">To Full-time &amp; Freelance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Muhammad Abdullah · Data Scientist · Karachi, Pakistan</p>
+</footer>
+
+</body>
+</html>
